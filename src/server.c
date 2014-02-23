@@ -63,7 +63,7 @@ void
 run_server() {
     init_connections();
 
-    ev_run(EV_DEFAULT, 0);
+    ev_loop(EV_DEFAULT, 0);
 
     free_connections(EV_DEFAULT);
 }
