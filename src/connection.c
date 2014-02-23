@@ -260,7 +260,7 @@ connection_cb(struct ev_loop *loop, struct ev_io *w, int revents) {
     assert((ev_is_active(client_watcher) && con->client.watcher.events) ||
            (ev_is_active(server_watcher) && con->server.watcher.events));
 
-    ev_verify(loop);
+    ev_loop_verify(loop);
 
     /* Move to head of queue, so we can find inactive connections */
     TAILQ_REMOVE(&connections, con, entries);
