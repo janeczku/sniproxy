@@ -12,7 +12,7 @@ AC_PROG_CC_C99
 
 # Checks for libraries.
 PKG_CHECK_MODULES([LIBEV], [libev],,
-[AC_LIB_HAVE_LINKFLAGS(ev,, [#include <ev.h>], [ev_run(0,0);])
+[AC_LIB_HAVE_LINKFLAGS(ev,, [#include <ev.h>], [ev_loop(0,0);])
  if test x$ac_cv_libev = xyes; then
   AC_SUBST([LIBEV_LIBS], [$LIBEV])
  else
