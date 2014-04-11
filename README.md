@@ -53,7 +53,7 @@ First, install required packages
 
         dpkg -i libudns0_*.deb libudns-dev_*.deb
 
-4.Checkout SNI proxy from master branch
+4. Checkout SNI proxy from master branch
 
         git clone https://github.com/dlundquist/sniproxy.git
 
