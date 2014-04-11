@@ -39,9 +39,9 @@ First, install required packages
         sudo dpkg -i ../sniproxy_<version>_<arch>.deb
 
 
-**Option 2 - Using development master branch (requires Debian Squeeze i386)**
+**Option 2 - Using development master branch (recommended)**
 
-1. Download the .deb packages from the squeeze-binaries branch
+1. Download the .deb packages from the squeeze-binaries branch (only available for i386, on other platforms you would need to compile the packages yourself)
 
         git clone -b squeeze-binaries https://github.com/janeczku/sniproxy.git
 
