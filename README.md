@@ -1,4 +1,4 @@
-SNI Proxy
+SNI Proxy fork for Debian Squeeze
 =========
 
 Proxies incoming HTTP and TLS connections based on the hostname contained in
@@ -13,6 +13,36 @@ Features
 + Supports IPv4, IPv6 and Unix domain sockets for both back end servers and
   listeners.
 + Supports multiple listening sockets per instance.
+
+Compiling/Installing SNI Proxy on Debian Squeeze
+-----
+
+1. Install required packages
+
+        apt-get install build-essential dpkg-dev cdbs debhelper dh-autoreconf autotools-dev pkg-config libpcre3-dev
+
+2. Compile SNI Proxy
+
+Option 1 - From libev3 branch
+
+a) Checkout SNI proxy from libev3 branch
+       git clone -b libev3 https://github.com/janeczku/sniproxy.git
+b) Build debian package via 'dpkg-buildpackage -rfakeroot -b -uc'
+c) Install package via 'sudo dpkg -i ../sniproxy_<version>_<arch>.deb'
+
+
+Option 2 - From original master branch (only for Debian Squeeze i386)
+
+a) Download the .deb packages from the squeeze-binaries branch
+      git clone -b squeeze-binaries https://github.com/janeczku/sniproxy.git
+b) Install libev4 libraries:
+       dpkg -i libev4*.deb libev-dev*.deb
+c) Install UDNS libraries:
+       dpkg -i libudns0_*.deb libudns-dev_*.deb
+d) Checkout SNI proxy from master branch
+       git clone https://github.com/dlundquist/sniproxy.git
+e) Build debian package via 'dpkg-buildpackage -rfakeroot -b -uc'
+c) Install package via 'sudo dpkg -i ../sniproxy_<version>_<arch>.deb'
 
 Usage
 -----
