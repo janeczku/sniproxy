@@ -24,26 +24,47 @@ First, install required packages
 **Building Debian Squeeze package**
 
 
-***Option 1 - Using libev3 branch***
+**Option 1 - Using libev3 branch**
 
-a) Checkout SNI proxy from libev3 branch
-       git clone -b libev3 https://github.com/janeczku/sniproxy.git
-b) Build debian package via 'dpkg-buildpackage -rfakeroot -b -uc'
-c) Install package via 'sudo dpkg -i ../sniproxy_<version>_<arch>.deb'
+1. Checkout SNI proxy from libev3 branch
+
+        git clone -b libev3 https://github.com/janeczku/sniproxy.git
+
+2. Build debian package
+
+        dpkg-buildpackage -rfakeroot -b -uc
+
+3. Install resulting package
+
+        sudo dpkg -i ../sniproxy_<version>_<arch>.deb
 
 
-***Option 2 - Using development master branch (requires Debian Squeeze i386)***
+**Option 2 - Using development master branch (requires Debian Squeeze i386)**
 
-a) Download the .deb packages from the squeeze-binaries branch
-      git clone -b squeeze-binaries https://github.com/janeczku/sniproxy.git
-b) Install libev4 libraries:
-       dpkg -i libev4*.deb libev-dev*.deb
-c) Install UDNS libraries:
-       dpkg -i libudns0_*.deb libudns-dev_*.deb
-d) Checkout SNI proxy from master branch
-       git clone https://github.com/dlundquist/sniproxy.git
-e) Build debian package via 'dpkg-buildpackage -rfakeroot -b -uc'
-c) Install package via 'sudo dpkg -i ../sniproxy_<version>_<arch>.deb'
+1. Download the .deb packages from the squeeze-binaries branch
+
+        git clone -b squeeze-binaries https://github.com/janeczku/sniproxy.git
+
+2. Install libev4 libraries:
+
+        dpkg -i libev4*.deb libev-dev*.deb
+
+3. Install UDNS libraries:
+
+        dpkg -i libudns0_*.deb libudns-dev_*.deb
+
+4.Checkout SNI proxy from master branch
+
+        git clone https://github.com/dlundquist/sniproxy.git
+
+5. Build Debian package
+
+        dpkg-buildpackage -rfakeroot -b -uc
+
+6. Install resulting package
+
+        sudo dpkg -i ../sniproxy_<version>_<arch>.deb
+
 
 Usage
 -----
