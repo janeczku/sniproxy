@@ -47,11 +47,11 @@ First, install required packages
 
 2. Install libev4 libraries:
 
-        dpkg -i libev4*.deb libev-dev*.deb
+        sudo dpkg -i libev4*.deb libev-dev*.deb
 
 3. Install UDNS libraries:
 
-        dpkg -i libudns0_*.deb libudns-dev_*.deb
+        sudo dpkg -i libudns0_*.deb libudns-dev_*.deb
 
 4. Checkout SNI proxy from master branch
 
