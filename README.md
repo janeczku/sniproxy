@@ -17,13 +17,14 @@ Features
 Compiling/Installing SNI Proxy on Debian Squeeze
 -----
 
-1. Install required packages
+First, install required packages
 
         apt-get install build-essential dpkg-dev cdbs debhelper dh-autoreconf autotools-dev pkg-config libpcre3-dev
 
-2. Compile SNI Proxy
+**Building Debian Squeeze package**
 
-Option 1 - From libev3 branch
+
+***Option 1 - Using libev3 branch***
 
 a) Checkout SNI proxy from libev3 branch
        git clone -b libev3 https://github.com/janeczku/sniproxy.git
@@ -31,7 +32,7 @@ b) Build debian package via 'dpkg-buildpackage -rfakeroot -b -uc'
 c) Install package via 'sudo dpkg -i ../sniproxy_<version>_<arch>.deb'
 
 
-Option 2 - From original master branch (only for Debian Squeeze i386)
+***Option 2 - Using development master branch (requires Debian Squeeze i386)***
 
 a) Download the .deb packages from the squeeze-binaries branch
       git clone -b squeeze-binaries https://github.com/janeczku/sniproxy.git
