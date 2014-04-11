@@ -1,4 +1,4 @@
-SNI Proxy fork for Debian Squeeze
+SNI Proxy (Debian Squeeze branch)
 =========
 
 Proxies incoming HTTP and TLS connections based on the hostname contained in
