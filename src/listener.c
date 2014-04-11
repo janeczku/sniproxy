@@ -30,6 +30,7 @@
 #include <stddef.h> /* offsetof */
 #include <strings.h> /* strcasecmp() */
 #include <unistd.h>
+#include <fcntl.h>
 #include <errno.h>
 #include <sys/queue.h>
 #include <sys/types.h>
@@ -81,6 +82,7 @@ new_listener() {
     listener->fallback_address = NULL;
     listener->protocol = tls_protocol;
     listener->access_log = NULL;
+    listener->log_bad_requests = 0;
 
     return listener;
 }
@@ -157,6 +159,15 @@ accept_listener_fallback_address(struct Listener *listener, char *fallback) {
          * much sense to configure it as a wildcard. */
         fprintf(stderr, "Wildcard address prohibited as fallback address\n");
         return 0;
+    }
+
+    return 1;
+}
+
+int
+accept_listener_bad_request_action(struct Listener *listener, char *action) {
+    if (strncmp("log", action, strlen(action)) == 0) {
+        listener->log_bad_requests = 1;
     }
 
     return 1;
@@ -251,6 +262,10 @@ init_listener(struct Listener *listener, const struct Table_head *tables) {
         return -4;
     }
 
+
+    int flags = fcntl(sockfd, F_GETFL, 0);
+    fcntl(sockfd, F_SETFL, flags | O_NONBLOCK);
+
     struct ev_io *listener_watcher = &listener->watcher;
     ev_io_init(listener_watcher, accept_cb, sockfd, EV_READ);
     listener->watcher.data = listener;
@@ -279,7 +294,8 @@ listener_lookup_server_address(const struct Listener *listener,
         new_addr = new_address(hostname);
         if (new_addr == NULL) {
             warn("Invalid hostname %s", hostname);
-            return NULL;
+
+            return listener->fallback_address;
         }
 
         if (port != 0)
@@ -287,8 +303,11 @@ listener_lookup_server_address(const struct Listener *listener,
     } else {
         size_t len = address_len(addr);
         new_addr = malloc(len);
-        if (new_addr == NULL)
-            return NULL;
+        if (new_addr == NULL) {
+            err("%s: malloc", __func__);
+
+            return listener->fallback_address;
+        }
 
         memcpy(new_addr, addr, len);
     }
