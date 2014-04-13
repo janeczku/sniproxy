@@ -48,7 +48,7 @@ int main() {
     ev_timer_init(&timeout_watcher, &timeout_cb, 5.0, 0.0);
     ev_timer_start(loop, &timeout_watcher);
 
-    ev_run(loop, 0);
+    ev_loop(loop, 0);
 
     return 0;
 }

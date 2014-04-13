@@ -19,7 +19,7 @@ PKG_CHECK_MODULES([LIBEV], [libev],,
   AC_SUBST([LIBEV_LIBS], [$LIBEV])
  else
   AC_MSG_ERROR([[***
-*** libev4 was not found.
+*** libev3 was not found.
 ***]])
  fi
 ])
